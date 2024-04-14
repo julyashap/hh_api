@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hh-api"
+version = "0.1.0"
+description = ""
+authors = ["Julya Shapaeva <shapaeva03@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
