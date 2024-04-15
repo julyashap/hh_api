@@ -3,7 +3,15 @@ class Vacancy:
 
     @classmethod
     def cast_to_object_list(cls, vacancies_list):
-        pass
+        """Класс-метод для создания списка объектов Vacancy из списка вакансий в формате JSON"""
+
+        vacancies_object_list = []
+
+        for vacancy in vacancies_list:
+            vacancy_object = cls(vacancy['name'], vacancy['url'], vacancy['salary'], vacancy['experience']['name'])
+            vacancies_object_list.append(vacancy_object)
+
+        return vacancies_object_list
 
     def __init__(self, name: str, url: str, salary, experience):
         """Конструктор класса Vacancy"""
