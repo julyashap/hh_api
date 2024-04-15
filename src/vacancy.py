@@ -28,7 +28,7 @@ class Vacancy:
 
         if not salary:
             self.__salary = {"from": 0}
-        elif isinstance(salary, float):
+        elif isinstance(salary, (int, float)):
             self.__salary = {"from": salary}
         elif isinstance(salary, str):
             self.__salary = {"to": float(salary.split("-")[1]), "from": float(salary.split("-")[0])}
@@ -62,7 +62,7 @@ class Vacancy:
     def set_salary(self, salary):
         """Сеттер для зарплаты"""
 
-        if isinstance(salary, float):
+        if isinstance(salary, (int, float)):
             self.__salary = {"from": salary}
         elif isinstance(salary, str):
             self.__salary = {"to": float(salary.split("-")[1]), "from": float(salary.split("-")[0])}
@@ -70,9 +70,16 @@ class Vacancy:
     def __le__(self, other) -> bool:
         """Магический метод для сравнения 'меньше или равно' зарплат"""
 
-        return self.__salary <= other.salary
+        return self.__salary['from'] <= other.salary['from']
 
     def __ge__(self, other) -> bool:
         """Магический метод для сравнения 'больше или равно' зарплат"""
 
-        return self.__salary >= other.salary
+        return self.__salary['from'] >= other.salary['from']
+
+    def __str__(self):
+        if len(self.__salary) == 2:
+            return f"Вакансия {self.name} c зарплатой от {self.__salary['from']} до {self.__salary['to']}" \
+                   f" и опытом работы: {self.experience}. Ссылка: {self.url}"
+        return f"Вакансия {self.name} c зарплатой от {self.__salary['from']}" \
+               f" и опытом работы: {self.experience}. Ссылка: {self.url}"
