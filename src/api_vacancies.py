@@ -6,8 +6,10 @@ class APIVacancies(ABC):
 
     @abstractmethod
     def __init__(self):
+        """Конструктор класса"""
         pass
 
     @abstractmethod
     def load_vacancies(self, keyword: str) -> list:
+        """Метод для получения списка вакансий по запросу"""
         pass
