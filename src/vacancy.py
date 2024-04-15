@@ -1,4 +1,4 @@
-class Vacancy:
+class Vacancy():
     """Класс для обработки вакансии"""
 
     @classmethod
@@ -15,8 +15,6 @@ class Vacancy:
 
     def __init__(self, name: str, url: str, salary, experience):
         """Конструктор класса Vacancy"""
-
-        # self.validate_data(name, url, salary, experience)
 
         if not name:
             raise ValueError("Название вакансии должно быть указано!")
@@ -36,21 +34,6 @@ class Vacancy:
         if not experience:
             self.experience = 0
         self.experience = experience
-
-    # @staticmethod
-    # def validate_data(name, url, salary, experience):
-    #     """Метод, проверяющий входные данные на соответствие типам"""
-    #
-    #     if not isinstance(name, str):
-    #         raise ValueError("Название вакансии должно быть строкой!")
-    #     elif not isinstance(url, str):
-    #         raise ValueError("Ссылка на вакансию должна быть строкой!")
-    #     elif not isinstance(experience, (float, str)):
-    #         raise ValueError("Опыт работы должен быть типа float или str!")
-    #     elif not isinstance(salary, (float, str)):
-    #         raise ValueError("Зарплата должна быть типа float или str!")
-    #
-    #     pass
 
     @property
     def get_salary(self) -> dict:
@@ -77,9 +60,7 @@ class Vacancy:
 
         return self.__salary['from'] >= other.salary['from']
 
-    def __str__(self):
-        if len(self.__salary) == 2:
-            return f"Вакансия {self.name} c зарплатой от {self.__salary['from']} до {self.__salary['to']}" \
-                   f" и опытом работы: {self.experience}. Ссылка: {self.url}"
-        return f"Вакансия {self.name} c зарплатой от {self.__salary['from']}" \
-               f" и опытом работы: {self.experience}. Ссылка: {self.url}"
+    def __repr__(self):
+        """Магический метод для отображения созданного экземпляра класса Vacancy"""
+
+        return f"Vacancy('{self.name}', '{self.url}', {self.__salary}, '{self.experience}')"
