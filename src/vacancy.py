@@ -48,17 +48,6 @@ class Vacancy:
 
         return self.__salary
 
-    @get_salary.setter
-    def set_salary(self, salary):
-        """Сеттер для зарплаты"""
-
-        pass
-
-        # if isinstance(salary, (int, float)):
-        #     self.__salary = {"from": salary}
-        # elif isinstance(salary, str):
-        #     self.__salary = {"to": float(salary.split("-")[1]), "from": float(salary.split("-")[0])}
-
     def __eq__(self, other):
         """Магический метод для сравнения 'равно' зарплат"""
 
