@@ -15,7 +15,7 @@ class JSONVacancySaver(VacancySaver):
         if isinstance(vacancy, Vacancy):
             vacancy_dict = {'name': vacancy.name, 'url': vacancy.url,
                             'salary': vacancy.get_salary,
-                            'experience': vacancy.experience}
+                            'responsibility': vacancy.responsibility}
             self.vacancies.append(vacancy_dict)
         else:
             raise ValueError("Должен быть передан объект класса Vacancy!")
@@ -31,19 +31,15 @@ class JSONVacancySaver(VacancySaver):
 
         for vacancy in self.vacancies:
             if vacancy['name'] == name_of_vacancy and vacancy['url'] == url_of_vacancy:
-                if len(vacancy['salary']) == 1:
-                    return Vacancy(vacancy['name'], vacancy['url'], vacancy['salary']['from'], vacancy['experience'])
-                else:
-                    return Vacancy(vacancy['name'], vacancy['url'],
-                                   f"{vacancy['salary']['from']}-{vacancy['salary']['to']}",
-                                   vacancy['experience'])
+                return Vacancy(vacancy['name'], vacancy['url'], vacancy['salary'],
+                               vacancy['responsibility'])
 
     def delete_vacancy(self, vacancy: Vacancy):
         """Метод для удаления вакансии из JSON-файла"""
 
         dict_to_remove = {'name': vacancy.name, 'url': vacancy.url,
                           'salary': vacancy.get_salary,
-                          'experience': vacancy.experience}
+                          'responsibility': vacancy.responsibility}
 
         self.vacancies.remove(dict_to_remove)
 
